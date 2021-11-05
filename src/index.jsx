@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 ReactDOM.render(
     <p className={"fooBar"}>
-      Initial JSX
+      Initial MM
     </p>,
     document.getElementById('root')
 );
