@@ -15,6 +15,6 @@ export function events() {
       .then(response => response.data["events"]);
 }
 
-// budget, przerobić a1 - zwracanie wszystkich operacji + endpoint do node.js, commit i push
+// TODO: budget, przerobić a1 - zwracanie wszystkich operacji + endpoint do node.js, commit i push
 
 events().then(events => console.log(events))
