@@ -10,6 +10,16 @@ export function icdName(icdCode) {
       .then(response => response.data["name"]);
 }
 
+export function workingHours() {
+  return instance.get('/working-hours')
+      .then(response => response.data)
+}
+
+export function workingHoursCreate(start, duration) {
+  return instance.get('/create/working-hours', {params: {start: start, duration: duration}})
+      .then(response => response.data)
+}
+
 export function events() {
   return instance.get('/events')
       .then(response => response.data["events"]);
