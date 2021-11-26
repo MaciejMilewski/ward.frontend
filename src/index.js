@@ -1,14 +1,24 @@
-import {icdName} from "./http";
+import {icdName, workingHours, workingHoursCreate} from "./http";
 
 byId("load_working_hours").addEventListener("click", () => {
-  byId("working_hours").innerText = JSON.stringify({
-    from: 568,
-    to: 960
-  });
+  workingHours()
+      .then(workingHours => {
+        byId("working_hours").innerText = JSON.stringify(workingHours);
+      })
+      .catch(e => {
+        const s = e.response.status;
+        if (s === 404) alert("Working hours have not been set");
+      });
 })
 
 byId("save_working_hours").addEventListener("click", () => {
-  console.log("Save")
+  const start = prompt("Podaj początek pracy:", "10:00")
+  const duration = prompt("Podaj czas trwania pracy:", "6")
+  workingHoursCreate(start, duration)
+      .catch(e => {
+        const s = e.response.status;
+        if (s === 422) alert("Niepoprawny format godzin");
+      });
 })
 
 byId("load_icd").addEventListener("click", () => {
