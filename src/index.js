@@ -1,4 +1,4 @@
-import {events, icdName, patientCreate, patients, workingHours, workingHoursCreate} from "./http";
+import {events, icdName, patientCreate, patientDelete, patients, workingHours, workingHoursCreate} from "./http";
 
 byId("load_working_hours").addEventListener("click", () => {
   workingHours()
@@ -62,6 +62,17 @@ byId("save_patient").addEventListener("click", () => {
         const s = e.response.status;
         if (s === 422) alert("Niepoprawny pesel");
         if (s === 409) alert("Pacjent z podanym peselem już istnieje");
+      });
+})
+
+byId("delete_patient").addEventListener("click", () => {
+  const pesel = prompt("Podaj pesel:", "00301000015")
+
+  patientDelete(pesel)
+      .catch(e => {
+        const s = e.response.status;
+        if (s === 404) alert("Brak pacjenta z podanym peselem");
+        if (s === 422) alert("Niepoprawny pesel");
       });
 })
 
