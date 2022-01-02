@@ -36,5 +36,9 @@ export function patientCreate(pesel, name) {
       .then(response => response.data);
 }
 
+export function patientDelete(pesel) {
+  return instance.delete(url('/patients/:pesel', {pesel}))
+      .then(response => response.data);
+}
 
 events().then(events => console.log(events))
