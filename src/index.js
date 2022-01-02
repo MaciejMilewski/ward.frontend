@@ -1,4 +1,4 @@
-import {icdName, workingHours, workingHoursCreate} from "./http";
+import {events, icdName, patientCreate, patients, workingHours, workingHoursCreate} from "./http";
 
 byId("load_working_hours").addEventListener("click", () => {
   workingHours()
@@ -30,6 +30,38 @@ byId("load_icd").addEventListener("click", () => {
         const s = e.response.status;
         if (s === 422) alert("Invalid ICD code");
         if (s === 404) alert("Unknown ICD code");
+      });
+})
+
+byId("load_events_by_date").addEventListener("click", () => {
+  const year = prompt("Podaj rok:", "2021")
+  const month = prompt("Podaj miesiąc:", "9")
+  const day = prompt("Podaj dzień:", "14")
+
+  events(year, month, day)
+      .then(name => {
+        byId("events_by_date").innerText = JSON.stringify({name});
+      });
+})
+
+byId("load_patient_by_pesel").addEventListener("click", () => {
+  const pesel = prompt("Podaj pesel:", "00301000015")
+
+  patients(pesel)
+      .then(patient => {
+        byId("patient_by_pesel").innerText = JSON.stringify(patient);
+      });
+})
+
+byId("save_patient").addEventListener("click", () => {
+  const pesel = prompt("Podaj pesel:", "00301000015")
+  const name = prompt("Podaj imię i nazwisko:", "Tadeusz Wiśniewski")
+
+  patientCreate(pesel, name)
+      .catch(e => {
+        const s = e.response.status;
+        if (s === 422) alert("Niepoprawny pesel");
+        if (s === 409) alert("Pacjent z podanym peselem już istnieje");
       });
 })
 

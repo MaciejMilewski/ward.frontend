@@ -1,8 +1,9 @@
 import axios from "axios";
+import {url} from "./url.js";
 
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8081/'
+  baseURL: 'http://localhost:8080/'
 });
 
 export function icdName(icdCode) {
@@ -16,15 +17,24 @@ export function workingHours() {
 }
 
 export function workingHoursCreate(start, duration) {
-  return instance.get('/create/working-hours', {params: {start: start, duration: duration}})
+  return instance.post('/working-hours', {start, duration})
       .then(response => response.data)
 }
 
-export function events() {
-  return instance.get('/events')
-      .then(response => response.data["events"]);
+export function events(year, month, day) {
+  return instance.get('/events', {params: {year, month, day}})
+      .then(response => response.data);
 }
 
-// TODO: budget, przerobić a1 - zwracanie wszystkich operacji + endpoint do node.js, commit i push
+export function patients(pesel) {
+  return instance.get(url('/patients/:pesel', {pesel}))
+      .then(response => response.data);
+}
+
+export function patientCreate(pesel, name) {
+  return instance.post('/patients', {pesel, name})
+      .then(response => response.data);
+}
+
 
 events().then(events => console.log(events))

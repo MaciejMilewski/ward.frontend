@@ -38,5 +38,8 @@ module.exports = (env, argv) => ({
   devServer: {
     hot: true,
     historyApiFallback: true,
+    proxy: {
+      '/': 'http://localhost:8081',
+    },
   }
 });
