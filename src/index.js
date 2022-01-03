@@ -1,4 +1,4 @@
-import {events, icdName, patientCreate, patientDelete, patients, workingHours, workingHoursCreate} from "./http";
+import {icdName, patient, patientCreate, patientDelete, patients, workingHours, workingHoursCreate} from "./http";
 
 byId("load_working_hours").addEventListener("click", () => {
   workingHours()
@@ -33,21 +33,10 @@ byId("load_icd").addEventListener("click", () => {
       });
 })
 
-byId("load_events_by_date").addEventListener("click", () => {
-  const year = prompt("Podaj rok:", "2021")
-  const month = prompt("Podaj miesiąc:", "9")
-  const day = prompt("Podaj dzień:", "14")
-
-  events(year, month, day)
-      .then(name => {
-        byId("events_by_date").innerText = JSON.stringify({name});
-      });
-})
-
 byId("load_patient_by_pesel").addEventListener("click", () => {
   const pesel = prompt("Podaj pesel:", "00301000015")
 
-  patients(pesel)
+  patient(pesel)
       .then(patient => {
         byId("patient_by_pesel").innerText = JSON.stringify(patient);
       });
@@ -73,6 +62,20 @@ byId("delete_patient").addEventListener("click", () => {
         const s = e.response.status;
         if (s === 404) alert("Brak pacjenta z podanym peselem");
         if (s === 422) alert("Niepoprawny pesel");
+      });
+})
+
+byId("load_patients").addEventListener("click", () => {
+  const size = prompt("Podaj size:", "2")
+  const page = prompt("Podaj stronę:", "1")
+
+  patients(size, page)
+      .then(patient => {
+        byId("patients").innerText = JSON.stringify(patient);
+      })
+      .catch(e => {
+        const s = e.response.status;
+        if (s === 422) alert("Niepoprawne parametry");
       });
 })
 
