@@ -26,7 +26,7 @@ export function events(year, month, day) {
       .then(response => response.data);
 }
 
-export function patients(pesel) {
+export function patient(pesel) {
   return instance.get(url('/patients/:pesel', {pesel}))
       .then(response => response.data);
 }
@@ -41,4 +41,7 @@ export function patientDelete(pesel) {
       .then(response => response.data);
 }
 
-events().then(events => console.log(events))
+export function patients(size, page) {
+  return instance.get('/patients', {params: {size, page}})
+      .then(response => response.data);
+}
