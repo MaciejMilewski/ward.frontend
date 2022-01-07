@@ -43,5 +43,10 @@ export function patientDelete(pesel) {
 
 export function patients(size, page) {
   return instance.get('/patients', {params: {size, page}})
-      .then(response => response.data);
+    .then(response => response.data);
+}
+
+export function authenticate(username, password) {
+  return instance.post('/auth', {username, password})
+    .then(response => response.data);
 }
