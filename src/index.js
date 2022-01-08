@@ -11,18 +11,31 @@ byId("load_working_hours").addEventListener("click", () => {
     });
 });
 
-byId("authenticate").addEventListener("click", () => {
-  const [username, password] = prompt('Podaj login:hasło', 'root:root').split(':');
-  authenticate(username, password)
-    .then(response => {
-      byId("authentication").innerText = JSON.stringify(response);
-    })
-    .catch(e => {
-      if (e.response.status === 401) {
-        alert("Błędne dane logowania");
-      }
-    });
-});
+Array.from(document.getElementsByClassName("authenticate"))
+  .forEach(element => element.addEventListener("click", event => {
+    const role = event.target.dataset.role;
+
+    const credentials = {
+      head: ['user_hd', 'password'],
+      planner: ['user_pl', 'password'],
+      operator: ['user_op', 'password'],
+      secretary: ['user_sc', 'password'],
+    };
+
+    const [username, password] = credentials[role];
+
+    console.log([username, password]);
+
+    authenticate(username, password)
+      .then(response => {
+        byId("authentication").innerText = JSON.stringify(response);
+      })
+      .catch(e => {
+        if (e.response.status === 401) {
+          alert("Błędne dane logowania");
+        }
+      });
+  }));
 
 byId("save_working_hours").addEventListener("click", () => {
   const start = prompt("Podaj początek pracy:", "10:00");
@@ -99,5 +112,3 @@ function byId(id) {
   }
   return element;
 }
-
-
