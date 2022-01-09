@@ -1,4 +1,4 @@
-import {authenticate, icdName, patient, patientCreate, patientDelete, patients, workingHours, workingHoursCreate} from "./http";
+import {authenticate, icdName, patient, patientCreate, patientDelete, patients, workingHours, workingHoursCreate, client} from "./http.js";
 
 byId("load_working_hours").addEventListener("click", () => {
   workingHours()
@@ -28,6 +28,8 @@ Array.from(document.getElementsByClassName("authenticate"))
 
     authenticate(username, password)
       .then(response => {
+        const accessToken = response.token;
+        client.login(accessToken);
         byId("authentication").innerText = JSON.stringify(response);
       })
       .catch(e => {
