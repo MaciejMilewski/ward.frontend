@@ -5,45 +5,37 @@ export const client = new Client('localhost', 8080);
 
 export function icdName(icd) {
   return client.get('/icd', {icd})
-    .then(response => response.data["name"]);
+    .then(response => response["name"]);
 }
 
 export function workingHours() {
-  return client.get('/working-hours')
-    .then(response => response.data);
+  return client.get('/working-hours');
 }
 
 export function workingHoursCreate(start, duration) {
-  return client.post('/working-hours', {start, duration})
-    .then(response => response.data);
+  return client.post('/working-hours', {start, duration});
 }
 
 export function events(year, month, day) {
-  return client.get('/events', {params: {year, month, day}})
-    .then(response => response.data);
+  return client.get('/events', {params: {year, month, day}});
 }
 
 export function patient(pesel) {
-  return client.get(url('/patients/:pesel', {pesel}))
-    .then(response => response.data);
+  return client.get(url('/patients/:pesel', {pesel}));
 }
 
 export function patientCreate(pesel, name) {
-  return client.post('/patients', {pesel, name})
-    .then(response => response.data);
+  return client.post('/patients', {pesel, name});
 }
 
 export function patientDelete(pesel) {
-  return client.delete(url('/patients/:pesel', {pesel}))
-    .then(response => response.data);
+  return client.delete(url('/patients/:pesel', {pesel}));
 }
 
 export function patients(size, page) {
-  return client.get('/patients', {size, page})
-    .then(response => response.data);
+  return client.get('/patients', {size, page});
 }
 
 export function authenticate(username, password) {
-  return client.post('/auth', {username, password})
-    .then(response => response.data);
+  return client.post('/auth', {username, password});
 }

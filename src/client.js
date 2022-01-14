@@ -7,18 +7,15 @@ export class Client {
   }
 
   get(uri, query = {}) {
-    return this.axios.get(uri, {
-      params: query,
-      headers: this.headers()
-    });
+    return this.axios.get(uri, {params: query, headers: this.headers()}).then(response => response.data);
   }
 
   post(uri, data) {
-    return this.axios.post(uri, data, {headers: this.headers()});
+    return this.axios.post(uri, data, {headers: this.headers()}).then(response => response.data);
   }
 
   delete(uri) {
-    return this.axios.delete(uri, {headers: this.headers()});
+    return this.axios.delete(uri, {headers: this.headers()}).then(response => response.data);
   }
 
   login(accessToken) {
