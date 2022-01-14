@@ -138,7 +138,7 @@ test('should return /user/:id, {age}', () => {
 });
 
 test('should return /user/:firstName, {firstName}', () => {
-  // wheN
+  // when
   const output = url("/user/:firstName", {firstName: "John Doe"});
   // then
   expect(output).toBe('/user/John%20Doe');
