@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "./components/Link.jsx";
+import Text from "./components/Text.jsx";
 
 export default function Layout({children}) {
   return <div>
@@ -8,7 +10,12 @@ export default function Layout({children}) {
       </div>
     </nav>
     <div className="container rounded-md mx-auto bg-white px-3 py-5">
-      {children}
+      <div className="mb-12">
+        {children}
+      </div>
+      <div className="text-xs">
+        <Link href="/">&lt; <Text>Go home</Text></Link>
+      </div>
     </div>
   </div>;
 }
