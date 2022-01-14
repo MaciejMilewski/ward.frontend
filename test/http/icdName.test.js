@@ -1,5 +1,4 @@
-import {icdName} from "../../src/http";
-
+import {icdName} from "../../src/http.js";
 
 test('should do something', async () => {
   // given
@@ -9,5 +8,3 @@ test('should do something', async () => {
   // then
   expect(name).toBe('Farmakoterapia doszpikowa');
 });
-
-
