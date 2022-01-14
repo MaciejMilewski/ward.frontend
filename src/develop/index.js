@@ -1,4 +1,4 @@
-import {authenticate, icdName, patient, patientCreate, patientDelete, patients, workingHours, workingHoursCreate, client} from "./http.js";
+import {authenticate, icdName, patient, patientCreate, patientDelete, patients, workingHours, workingHoursCreate, client} from "../http.js";
 
 byId("load_working_hours").addEventListener("click", () => {
   workingHours()
@@ -110,7 +110,7 @@ byId("load_patients").addEventListener("click", () => {
 function byId(id) {
   const element = document.getElementById(id);
   if (element === null) {
-    throw "Failed to find element by id";
+    throw "Failed to find element by id: #" + id;
   }
   return element;
 }

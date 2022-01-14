@@ -4,7 +4,10 @@ const {HotModuleReplacementPlugin} = require("webpack");
 
 module.exports = (env, argv) => ({
   mode: argv.mode || 'development',
-  entry: path.join(__dirname, 'src', 'index.js'),
+  entry: {
+    'develop/index': path.join(__dirname, 'src', 'develop', 'index.js'),
+    'view/index': path.join(__dirname, 'src', 'view', 'index.jsx'),
+  },
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, 'dist'),
@@ -30,9 +33,9 @@ module.exports = (env, argv) => ({
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html'
-    }),
+    new HtmlWebpackPlugin({template: './src/index.html', inject: false}),
+    new HtmlWebpackPlugin({template: './src/develop/index.html', filename: 'develop/index.html', chunks: ['develop/index']}),
+    new HtmlWebpackPlugin({template: './src/view/index.html', filename: 'view/index.html', chunks: ['view/index']}),
     new HotModuleReplacementPlugin()
   ],
   devServer: {
