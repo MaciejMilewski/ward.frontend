@@ -3,7 +3,7 @@ import Link from "./components/Link.jsx";
 import Text from "./components/Text.jsx";
 
 export default function Home({}) {
-  return <div>
+  return <div className="py-5 px-3">
     <h3 className="text-md">
       <Text>Home</Text>
     </h3>

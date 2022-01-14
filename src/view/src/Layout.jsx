@@ -11,11 +11,11 @@ export default function Layout({children}) {
         <LanguageSwitch/>
       </div>
     </nav>
-    <div className="container rounded-md mx-auto bg-white px-3 py-5">
-      <div className="mb-12">
+    <div className="container mx-auto">
+      <div className="rounded-xl bg-white overflow-hidden">
         {children}
       </div>
-      <div className="text-xs">
+      <div className="text-xs mt-2">
         <Link href="/">&lt; <Text>Go home</Text></Link>
       </div>
     </div>
