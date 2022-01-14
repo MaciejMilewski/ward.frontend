@@ -1,13 +1,22 @@
 import React from "react";
+import {useLanguage} from "./Translated.jsx";
 
 import translations from "../../translations/translations.json";
 
 export default function Text({children}) {
-  if (typeof children === 'string') {
-    if (translations.hasOwnProperty(children)) {
-      return translations[children];
+  const [language] = useLanguage();
+  if (language === 'en') {
+    return children;
+  }
+  return translated(children);
+}
+
+function translated(string) {
+  if (typeof string === 'string') {
+    if (translations.hasOwnProperty(string)) {
+      return translations[string];
     }
   }
-  console.error(`Failed to find a translation for string "${children}"`);
-  return children;
+  console.error(`Failed to find a translation for string "${string}"`);
+  return string;
 }
