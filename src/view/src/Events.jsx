@@ -1,10 +1,8 @@
 import React from "react";
-import Text from "./components/Text.jsx";
+import Calendar from "./components/Calendar.jsx";
 
 export default function Events({}) {
   return <div>
-    <h3 className="text-md">
-      <Text>Events</Text>
-    </h3>
+    <Calendar/>
   </div>;
 }
