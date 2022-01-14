@@ -22,6 +22,10 @@ export class Client {
     this.accessToken = accessToken;
   }
 
+  logout() {
+    this.accessToken = null;
+  }
+
   headers() {
     if (this.accessToken === null) {
       return {};

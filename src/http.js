@@ -4,8 +4,7 @@ import {Client} from './client.js';
 export const client = new Client('localhost', 8080);
 
 export function icdName(icd) {
-  return client.get('/icd', {icd})
-    .then(response => response["name"]);
+  return client.get('/icd', {icd}).then(response => response["name"]);
 }
 
 export function workingHours() {
