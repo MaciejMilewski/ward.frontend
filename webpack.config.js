@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const {HotModuleReplacementPlugin} = require("webpack");
 
+const favicon = {favicon: "./src/assets/favicon.ico"};
+
 module.exports = (env, argv) => ({
   mode: argv.mode || 'development',
   entry: {
@@ -33,9 +35,9 @@ module.exports = (env, argv) => ({
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({template: './src/index.html', inject: false}),
-    new HtmlWebpackPlugin({template: './src/develop/index.html', filename: 'develop/index.html', chunks: ['develop/index']}),
-    new HtmlWebpackPlugin({template: './src/view/index.html', filename: 'view/index.html', chunks: ['view/index']}),
+    new HtmlWebpackPlugin({...favicon, template: './src/index.html', inject: false}),
+    new HtmlWebpackPlugin({...favicon, template: './src/develop/index.html', filename: 'develop/index.html', chunks: ['develop/index']}),
+    new HtmlWebpackPlugin({...favicon, template: './src/view/index.html', filename: 'view/index.html', chunks: ['view/index']}),
     new HotModuleReplacementPlugin()
   ],
   devServer: {
