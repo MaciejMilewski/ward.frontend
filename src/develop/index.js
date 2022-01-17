@@ -1,4 +1,15 @@
-import {authenticate, icdName, patient, patientCreate, patientDelete, patients, workingHours, workingHoursCreate, client} from "../http.js";
+import {
+  authenticate,
+  icdName,
+  patient,
+  patientCreate,
+  patientDelete,
+  patients,
+  workingHours,
+  workingHoursCreate,
+  client,
+  patientUpdate
+} from "../http.js";
 
 byId("load_working_hours").addEventListener("click", () => {
   workingHours()
@@ -104,6 +115,18 @@ byId("load_patients").addEventListener("click", () => {
     .catch(e => {
       const s = e.response.status;
       if (s === 422) alert("Niepoprawne parametry");
+    });
+});
+
+byId("update_patient").addEventListener("click", () => {
+  const pesel = prompt("Podaj pesel:", "00301000015");
+  const newName = prompt("Podaj nowe imię i nazwisko:", "Nowe imię");
+
+  patientUpdate(pesel, newName)
+    .catch(e => {
+      const s = e.response.status;
+      if (s === 422) alert("Niepoprawne parametry");
+      if (s === 404) alert("Nie ma takiego pacjenta");
     });
 });
 

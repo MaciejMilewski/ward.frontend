@@ -18,6 +18,10 @@ export class Client {
     return this.axios.delete(uri, {headers: this.headers()}).then(response => response.data);
   }
 
+  put(uri, data) {
+    return this.axios.put(uri, data, {headers: this.headers()}).then(response => response.data);
+  }
+
   login(accessToken) {
     this.accessToken = accessToken;
   }
