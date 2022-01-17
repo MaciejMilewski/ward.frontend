@@ -21,7 +21,8 @@ export default function Selectable({onEventEdit, onEventCreate, initialDate, eve
     onSelectSlot={onEventCreate}
 
     eventPropGetter={(event) => {
-      const backgroundColor = event.allday ? 'yellow' : 'green';
+      const backgroundColor = event.allDay ? 'yellow' : 'green';
+      console.log(event)
       return {style: {backgroundColor}}
     }}
 
