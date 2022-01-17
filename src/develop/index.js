@@ -8,7 +8,7 @@ import {
   workingHours,
   workingHoursCreate,
   client,
-  patientUpdate
+  patientUpdate, room, roomCreate
 } from "../http.js";
 
 byId("load_working_hours").addEventListener("click", () => {
@@ -129,6 +129,47 @@ byId("update_patient").addEventListener("click", () => {
       if (s === 404) alert("Nie ma takiego pacjenta");
     });
 });
+
+byId("load_room").addEventListener("click", () => {
+  const name = prompt("Podaj nazwę", "Sala 1");
+
+  room(name)
+    .then(room => {
+      byId("room").innerText = JSON.stringify(patient);
+    })
+    .catch(e => {
+      const s = e.response.status;
+      if (s === 404) alert("Nie ma takiego pokoju");
+    });
+});
+
+byId("add_room").addEventListener("click", () => {
+  const name = prompt("Podaj nazwę", "Sala 1");
+
+  roomCreate(name)
+    .catch(e => {
+      const s = e.response.status;
+      if (s === 422) alert("Niepoprawna nazwa");
+      if (s === 409) alert("Taki pokój już istnieje");
+    });
+});
+
+
+// <span id="room">?</span>
+//
+// <button id="load_rooms">Wczytaj pokoje</button>
+// <span id="rooms">?</span>
+//
+// <button id="add_room">dodaj pokój</button>
+// <button id="delete_room">Usuń pokój</button>
+// <button id="update_room">Aktualizuj pokój</button>
+
+
+
+
+
+
+
 
 function byId(id) {
   const element = document.getElementById(id);
