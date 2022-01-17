@@ -10,6 +10,7 @@ import {
   WeekView,
 } from '@devexpress/dx-react-scheduler-material-ui';
 import {useLanguage} from "./Translated.jsx";
+import {Paper} from "@material-ui/core";
 
 export default function Calendar({}) {
   const [language] = useLanguage();
@@ -38,7 +39,6 @@ export default function Calendar({}) {
   };
 
   const TextEditor = (props) => {
-    // eslint-disable-next-line react/destructuring-assignment
     if (props.type === 'multilineTextEditor') {
       return null;
     }
@@ -50,50 +50,44 @@ export default function Calendar({}) {
       onFieldChange({customField: nextValue});
     };
 
-    return (
-        <AppointmentForm.BasicLayout
-            appointmentData={appointmentData}
-            onFieldChange={onFieldChange}
-            {...restProps}
-        >
-          <AppointmentForm.Label
-              text="Custom Field"
-              type="title"
-          />
-          <AppointmentForm.TextEditor
-              value={appointmentData.customField}
-              onValueChange={onCustomFieldChange}
-              placeholder="Custom field"
-          />
-        </AppointmentForm.BasicLayout>
-    );
+    return <AppointmentForm.BasicLayout
+      appointmentData={appointmentData}
+      onFieldChange={onFieldChange}
+      {...restProps}>
+      <AppointmentForm.Label
+        text="Custom Field"
+        type="title"
+      />
+      <AppointmentForm.TextEditor
+        value={appointmentData.customField}
+        onValueChange={onCustomFieldChange}
+        placeholder="Custom field"
+      />
+    </AppointmentForm.BasicLayout>;
   };
-  //
 
-  return <Scheduler data={data} height={660} locale={locales[language]}>
-    <ViewState
-        defaultCurrentDate={new Date('2018-06-27')}
-    />
+  return <Scheduler data={data} height={'auto'} locale={locales[language]}>
+    <ViewState defaultCurrentDate={new Date('2018-06-27')}/>
     <EditingState onCommitChanges={onCommitChanges}/>
     <IntegratedEditing/>
     <WeekView
-        startDayHour={9}
-        endDayHour={16}
+      startDayHour={8}
+      endDayHour={19}
     />
     <Appointments/>
     <AppointmentTooltip
-        showOpenButton
-        showDeleteButton
+      showOpenButton
+      showDeleteButton
     />
     <ConfirmationDialog/>
     <AppointmentForm
-        basicLayoutComponent={BasicLayout}
-        textEditorComponent={TextEditor}
-        messages={messages}
+      basicLayoutComponent={BasicLayout}
+      textEditorComponent={TextEditor}
+      messages={messages}
     />
     <DragDropProvider
-        allowDrag={() => true}
-        allowResize={() => false}
+      allowDrag={() => true}
+      allowResize={() => false}
     />
   </Scheduler>;
 }
