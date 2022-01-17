@@ -8,32 +8,24 @@ require('globalize/lib/cultures/globalize.culture.en-GB');
 
 const localizer = momentLocalizer(moment);
 
-function Selectable({onEventEdit, onEventCreate, initialDate, events}) {
+export default function Selectable({onEventEdit, onEventCreate, initialDate, events}) {
+  return <Calendar
+    selectable
+    localizer={localizer}
+    events={events}
+    views={['week', 'day', 'month']}
+    defaultView={Views.WEEK}
+    scrollToTime={new Date(1970, 1, 1, 6)}
+    defaultDate={initialDate}
+    onSelectEvent={onEventEdit}
+    onSelectSlot={onEventCreate}
 
-  return (
-      <div>
-        <Calendar
-            selectable
-            localizer={localizer}
-            events={events}
-            views={['week', 'day', 'month']}
-            defaultView={Views.WEEK}
-            scrollToTime={new Date(1970, 1, 1, 6)}
-            defaultDate={initialDate}
-            onSelectEvent={onEventEdit}
-            onSelectSlot={onEventCreate}
+    eventPropGetter={(event) => {
+      const backgroundColor = event.allday ? 'yellow' : 'green';
+      return {style: {backgroundColor}}
+    }}
 
-            eventPropGetter={(event) => {
-              const backgroundColor = event.allday ? 'yellow' : 'green';
-              return {style: {backgroundColor}}
-            }}
-
-            rtl={false}
-            culture={'en-GB'}
-        />
-      </div>
-  )
-
-}
-
-export default Selectable
+    rtl={false}
+    culture={'en-GB'}
+  />;
+};
