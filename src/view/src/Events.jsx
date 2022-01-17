@@ -1,8 +1,8 @@
 import React from "react";
-import Calendar from "./components/Calendar.jsx";
+import Selectable from "./components/BigCalendar.jsx";
 
 export default function Events({}) {
   return <div>
-    <Calendar/>
+    <Selectable/>
   </div>;
 }
