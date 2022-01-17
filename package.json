@@ -14,7 +14,7 @@
     "@devexpress/dx-react-scheduler": "^2.7.6",
     "@devexpress/dx-react-scheduler-material-ui": "^2.7.6",
     "@fortawesome/fontawesome-free": "5.15.4",
-    "@material-ui/core": "^4.11.4",
+    "@material-ui/core": "4.12.3",
     "@material-ui/icons": "^4.11.2",
     "babel-loader": "^8.2.2",
     "classnames": "^2.3.1",
