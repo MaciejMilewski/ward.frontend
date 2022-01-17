@@ -31,6 +31,10 @@ export function patientDelete(pesel) {
   return client.delete(url('/patients/:pesel', {pesel}));
 }
 
+export function patientUpdate(pesel, newName) {
+  return client.put(url('/patients/:pesel', {pesel}), {name: newName});
+}
+
 export function patients(size, page) {
   return client.get('/patients', {size, page});
 }
