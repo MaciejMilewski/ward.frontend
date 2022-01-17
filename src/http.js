@@ -42,3 +42,47 @@ export function patients(size, page) {
 export function authenticate(username, password) {
   return client.post('/auth', {username, password});
 }
+
+export function rooms(size, page) {
+  return client.get('/rooms', {size, page});
+}
+
+export function roomCreate(name) {
+  return client.post('/rooms', {name});
+}
+
+export function room(name) {
+  return client.get(url('/rooms/:name', {name}));
+}
+
+export function roomDelete(name) {
+  return client.delete(url('/rooms/:name', {name}));
+}
+
+export function roomUpdate(name, {name: newName, active}) {
+  return client.put(url('/rooms/:name', {name}), {name: newName, active});
+}
+
+export function operators(size, page) {
+  return client.get('/operator', {size, page});
+}
+
+export function operatorsActive(size, page) {
+  return client.get('/operator/active', {size, page});
+}
+
+export function operatorCreate(name) {
+  return client.post('/operator', {name});
+}
+
+export function operator(name) {
+  return client.get(url('/operator/:name', {name}));
+}
+
+export function operatorDelete(name) {
+  return client.delete(url('/operator/:name', {name}));
+}
+
+export function operatorUpdate(name, {name: newName, active}) {
+  return client.put(url('/operator/:name', {name}), {name: newName, active});
+}
