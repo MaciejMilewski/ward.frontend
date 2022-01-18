@@ -7,7 +7,14 @@ export class Client {
   }
 
   get(uri, query = {}) {
-    return this.axios.get(uri, {params: query, headers: this.headers()}).then(response => response.data);
+    return this.axios.get(uri, {params: query, headers: this.headers()})
+      .then(response => response.data)
+      .catch(error => {
+        if (error.response.status === 504) {
+          alert("Network communication failed")
+        }
+        throw error;
+      });
   }
 
   post(uri, data) {
