@@ -15,10 +15,6 @@ export function workingHoursCreate(start, duration) {
   return client.post('/working-hours', {start, duration});
 }
 
-export function events(year, month, day) {
-  return client.get('/events', {params: {year, month, day}});
-}
-
 export function patient(pesel) {
   return client.get(url('/patients/:pesel', {pesel}));
 }
@@ -106,3 +102,52 @@ export function operationTypeDelete(code) {
 export function operationTypeUpdate(code, {cost, duration, severe}) {
   return client.put(url('/operation-types/:code', {code}), {cost, duration, severe});
 }
+
+export function events(size, page) {
+  return client.get('/events', {size, page});
+}
+
+export function eventCreate(name, required, optional) {
+  const {date, startTime, pesel, code, operatorId, roomName} = required;
+  const {operationDuration, cleanupDuration} = optional;
+
+  return client.post('/events', {
+    date,
+    start_time: startTime,
+    pesel,
+    operation_type_code: code,
+    operator_id: operatorId,
+    operation_room_name: roomName,
+    operation_duration: operationDuration,
+    cleanup_duration: cleanupDuration
+  });
+}
+
+export function event(id) {
+  return client.get(url('/events/:id', {id}));
+}
+
+export function eventDelete(id) {
+  return client.delete(url('/events/:id', {id}));
+}
+
+export function eventUpdate(id, optional) {
+  const {pesel, date, startTime, code, roomName, operatorId, accepted} = optional;
+
+  return client.put(url('/event/:id', {id}), {
+    pesel,
+    date,
+    start_time: startTime,
+    operation_type_code: code,
+    operation_room_name: roomName,
+    operator_id: operatorId,
+    accepted
+  });
+}
+
+export function appointments(id, size, page) {
+  return client.get(url('/events/:id', {id}), {size, page});
+}
+
+// re_path(r'^events/(\w+)/accepted$', resource(put=event_accept, delete=event_withdraw_acceptation)),
+// re_path(r'^events/(\w+)/status$', resource(put=event_update_status)),
