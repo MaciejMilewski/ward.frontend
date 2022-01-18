@@ -2,8 +2,11 @@ import React from "react";
 import Link from "./components/Link.jsx";
 import Text from "./components/Text.jsx";
 import LanguageSwitch from "./components/LanguageSwitch.jsx";
+import useAuthentication from "./auth.js";
 
 export default function Layout({children}) {
+  const [role, login] = useAuthentication();
+
   return <div>
     <nav className="h-12 bg-blue-400 mb-3 shadow-md">
       <div className="h-12 container text-white mx-auto flex items-center justify-between">
@@ -33,11 +36,22 @@ export default function Layout({children}) {
             <Link href="/types"><Text>Operation types</Text></Link>
           </li>
         </ul>
+        <ul className="mt-6">
+          <li className="mb-2 text-sm">
+            {role ? <>Logged as: {role}</> : 'Not logged'}
+          </li>
+          <li onClick={() => login('head')}>Head</li>
+          <li onClick={() => login('planner')}>Planner</li>
+          <li onClick={() => login('operator')}>Operator</li>
+          <li onClick={() => login('secretary')}>Secretary</li>
+        </ul>
       </aside>
       <article className="md:w-2/3">
-        <div className="rounded-xl bg-white py-5 px-3">
-          {children}
-        </div>
+        {role === null
+          ? <div>You're not logged, so nothing for you here</div>
+          : <div className="rounded-xl bg-white py-5 px-3">
+            {children}
+          </div>}
       </article>
     </div>
   </div>;
