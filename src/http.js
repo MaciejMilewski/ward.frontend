@@ -86,3 +86,23 @@ export function operatorDelete(name) {
 export function operatorUpdate(name, {name: newName, active}) {
   return client.put(url('/operator/:name', {name}), {name: newName, active});
 }
+
+export function operationTypes(size, page) {
+  return client.get('/operation-types', {size, page});
+}
+
+export function operationTypeCreate(code, cost, duration, severe) {
+  return client.post('/operation-types', {code, cost, duration, severe});
+}
+
+export function operationType(code) {
+  return client.get(url('/operation-types/:code', {code}));
+}
+
+export function operationTypeDelete(code) {
+  return client.delete(url('/operation-types/:code', {code}));
+}
+
+export function operationTypeUpdate(code, {cost, duration, severe}) {
+  return client.put(url('/operation-types/:code', {code}), {cost, duration, severe});
+}
