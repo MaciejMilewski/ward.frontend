@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {events} from "../../../../http.js";
+import Toolbar from "../Toolbar.jsx";
 
 export default function EventsTable({}) {
   const [_events, setEvents] = useState(null);
@@ -17,6 +18,7 @@ export default function EventsTable({}) {
   }, []);
 
   return <div>
+    <Toolbar href="/events/new"/>
     {locked === true
       ? 'Application locked, set hours'
       : _events === null ? 'Loading...' : JSON.stringify(_events)

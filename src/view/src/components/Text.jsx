@@ -11,7 +11,7 @@ export default function Text({children}) {
   return translated(children);
 }
 
-function translated(string) {
+export function translated(string) {
   if (typeof string === 'string') {
     if (translations.hasOwnProperty(string)) {
       return translations[string];
