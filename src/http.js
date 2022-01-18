@@ -151,3 +151,30 @@ export function appointments(id, size, page) {
 
 // re_path(r'^events/(\w+)/accepted$', resource(put=event_accept, delete=event_withdraw_acceptation)),
 // re_path(r'^events/(\w+)/status$', resource(put=event_update_status)),
+
+export function budget() {
+  return client.get('/budget');
+}
+
+export function yearBudget(year) {
+  return client.get(url('/budget/:year', {year}));
+}
+
+export function yearBudgetCreate(year, amount) {
+  return client.post(url('/budget/:year', {year}), {amount});
+}
+
+export function yearBudgetUpdate(year, amount) {
+  return client.put(url('/budget/:year', {year}), {amount});
+}
+
+export function yearBudgetPlan(year, monthsAmounts) {
+  const {january, february, march, april, may, june, july, august, september, october, november, december} = monthsAmounts;
+
+  return client.post(url('/budget/:year/planned', {year}),
+    {january, february, march, april, may, june, july, august, september, october, november, december});
+}
+
+export function yearBudgetRemaining(year) {
+  return client.get(url('/budget/:year', {year}));
+}
