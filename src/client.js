@@ -13,6 +13,9 @@ export class Client {
         if (error.response.status === 504) {
           alert("Network communication failed")
         }
+        if (error.response.status === 403) {
+          alert("No permission to view the resource");
+        }
         throw error;
       });
   }
