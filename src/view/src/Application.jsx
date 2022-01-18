@@ -3,6 +3,7 @@ import {HashRouter, Route, Routes} from "react-router-dom";
 
 import Home from "./Home.jsx";
 import Room from "./views/rooms/Room.jsx";
+import Hours from "./views/hours/Hours.jsx";
 import Event from "./views/events/Event.jsx";
 import Events from "./Events.jsx";
 import Layout from "./Layout.jsx";
@@ -28,6 +29,10 @@ export default function ({}) {
             <Route path="events">
               <Route index element={<EventsTable/>}/>
               <Route path=":event" element={<Event/>}/>
+            </Route>
+
+            <Route path="hours">
+              <Route index element={<Hours/>}/>
             </Route>
 
             <Route path="operators">
