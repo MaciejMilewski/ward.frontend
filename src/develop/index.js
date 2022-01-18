@@ -8,7 +8,7 @@ import {
   workingHours,
   workingHoursCreate,
   client,
-  patientUpdate, room, roomCreate
+  patientUpdate, room, roomCreate, roomDelete, rooms, roomUpdate
 } from "../http.js";
 
 byId("load_working_hours").addEventListener("click", () => {
@@ -135,7 +135,7 @@ byId("load_room").addEventListener("click", () => {
 
   room(name)
     .then(room => {
-      byId("room").innerText = JSON.stringify(patient);
+      byId("room").innerText = JSON.stringify(room);
     })
     .catch(e => {
       const s = e.response.status;
@@ -154,21 +154,45 @@ byId("add_room").addEventListener("click", () => {
     });
 });
 
+byId("delete_room").addEventListener("click", () => {
+  const name = prompt("Podaj nazwę", "Sala 1");
 
-// <span id="room">?</span>
-//
-// <button id="load_rooms">Wczytaj pokoje</button>
-// <span id="rooms">?</span>
-//
-// <button id="add_room">dodaj pokój</button>
-// <button id="delete_room">Usuń pokój</button>
-// <button id="update_room">Aktualizuj pokój</button>
+  roomDelete(name)
+    .catch(e => {
+      const s = e.response.status;
+      if (s === 404) alert("Nie ma takiego pokoju");
+    });
+});
 
+byId("load_rooms").addEventListener("click", () => {
+  const size = prompt("Podaj size:", "2");
+  const page = prompt("Podaj stronę:", "1");
 
+  rooms(size, page)
+    .then(rooms => {
+      byId("rooms").innerText = JSON.stringify(rooms);
+    })
+    .catch(e => {
+      const s = e.response.status;
+      if (s === 422) alert("Niepoprawne parametry");
+    });
+});
 
+byId("update_room").addEventListener("click", () => {
+  const name = prompt("Podaj nazwę:", "Sala 1");
+  const newName = prompt("Podaj nową nazwę", "Sala nowa");
+  const active = prompt("Podaj nowy status (T/F)", "F");
 
-
-
+  roomUpdate(name, {
+    name: newName,
+    active: active === 'T'
+  })
+    .catch(e => {
+      const s = e.response.status;
+      if (s === 422) alert("Niepoprawne parametry");
+      if (s === 404) alert("Nie ma takiego pokoju");
+    });
+});
 
 
 function byId(id) {
