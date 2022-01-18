@@ -9,6 +9,7 @@
   "Operators": "Operatorzy",
   "Operation types": "Typy operacji",
   "Working hours": "Godziny pracy",
+  "New working hours": "Nowe godziny pracy",
   "Log out": "Wyloguj się",
   "Navigation": "Nawigacja",
   "New room": "Nowa sala operacyjna",
@@ -16,5 +17,10 @@
   "Create": "Stwórz",
   "New operator": "Nowy operujący",
   "New operation type": "Nowy typ operacji",
-  "New": "Nowy"
+  "New": "Nowy",
+  "Work start": "Rozpoczęcie pracy",
+  "Work duration": "Czas pracy",
+  "hours and": "godzin i",
+  "minutes": "minut",
+  "Save": "Zapisz"
 }
