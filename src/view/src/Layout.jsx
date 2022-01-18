@@ -11,13 +11,34 @@ export default function Layout({children}) {
         <LanguageSwitch/>
       </div>
     </nav>
-    <div className="container mx-auto">
-      <div className="rounded-xl bg-white overflow-hidden">
-        {children}
-      </div>
-      <div className="text-xs mt-2">
-        <Link href="/">&lt; <Text>Go home</Text></Link>
-      </div>
+    <div className="container mx-auto md:flex">
+      <aside className="md:w-1/3">
+        <ul>
+          <li>
+            <Link href="/"><Text>Homepage</Text></Link>
+          </li>
+          <li>
+            <Link href="/events"><Text>Events</Text></Link>
+          </li>
+          <li>
+            <Link href="/budget"><Text>Budget</Text></Link>
+          </li>
+          <li>
+            <Link href="/rooms"><Text>Operation rooms</Text></Link>
+          </li>
+          <li>
+            <Link href="/operators"><Text>Operators</Text></Link>
+          </li>
+          <li>
+            <Link href="/types"><Text>Operation types</Text></Link>
+          </li>
+        </ul>
+      </aside>
+      <article className="md:w-2/3">
+        <div className="rounded-xl bg-white py-5 px-3">
+          {children}
+        </div>
+      </article>
     </div>
   </div>;
 }
