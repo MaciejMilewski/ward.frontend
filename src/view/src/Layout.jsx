@@ -5,7 +5,7 @@ import LanguageSwitch from "./components/LanguageSwitch.jsx";
 import useAuthentication from "./auth.js";
 
 export default function Layout({children}) {
-  const [role, login] = useAuthentication();
+  const [role, login, logout] = useAuthentication();
 
   return <div>
     <nav className="h-12 bg-blue-400 mb-3 shadow-md">
@@ -16,9 +16,13 @@ export default function Layout({children}) {
     </nav>
     <div className="container mx-auto md:flex">
       <aside className="md:w-1/3">
+        <p className="mb-2 text-sm">Navigation</p>
         <ul>
           <li>
             <Link href="/"><Text>Homepage</Text></Link>
+          </li>
+          <li>
+            <Link href="/hours"><Text>Working hours</Text></Link>
           </li>
           <li>
             <Link href="/events"><Text>Events</Text></Link>
@@ -44,6 +48,7 @@ export default function Layout({children}) {
           <li onClick={() => login('planner')}>Planner</li>
           <li onClick={() => login('operator')}>Operator</li>
           <li onClick={() => login('secretary')}>Secretary</li>
+          <li onClick={() => logout()} className="mt-3 text-gray-500"><Text>Log out</Text></li>
         </ul>
       </aside>
       <article className="md:w-2/3">
