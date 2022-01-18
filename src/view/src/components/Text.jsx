@@ -1,7 +1,7 @@
 import React from "react";
 import {useLanguage} from "./Translated.jsx";
 
-import translations from "../../translations/translations.json";
+import translations from "../../translations/pl.json";
 
 export default function Text({children}) {
   const [language] = useLanguage();

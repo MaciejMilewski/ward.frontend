@@ -17,8 +17,10 @@ export default function Layout({children}) {
       </div>
     </nav>
     <div className="container mx-auto md:flex">
-      <aside className="md:w-1/3">
-        <p className="mb-2 text-sm">Navigation</p>
+      <aside className="md:w-1/3 lg:w-1/4">
+        <p className="mb-2 text-sm">
+          <Text>Navigation</Text>
+        </p>
         <ul>
           <li>
             <Link href="/"><Text>Homepage</Text></Link>
@@ -53,7 +55,7 @@ export default function Layout({children}) {
           <li onClick={() => logout()} className="mt-3 text-gray-500"><Text>Log out</Text></li>
         </ul>
       </aside>
-      <article className="md:w-2/3">
+      <article className="md:w-2/3 lg:w-3/4">
         {role === null
           ? <div>You're not logged, so nothing for you here</div>
           : <div className="rounded-xl bg-white py-5 px-3">
