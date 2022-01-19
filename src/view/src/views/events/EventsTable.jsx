@@ -21,7 +21,13 @@ export default function EventsTable({}) {
     <Toolbar href="/events/new"/>
     {locked === true
       ? 'Application locked, set hours'
-      : _events === null ? 'Loading...' : JSON.stringify(_events)
+      : _events === null ? 'Loading...' : <Json>{_events}</Json>
     }
   </div>;
+}
+
+function Json({children}) {
+  return <div className="break-words">
+    {JSON.stringify(children)}
+  </div>
 }
