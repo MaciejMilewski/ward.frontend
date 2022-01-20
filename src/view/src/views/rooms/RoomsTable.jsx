@@ -22,6 +22,7 @@ function Rooms({rooms}) {
   return <table>
     <thead>
     <tr>
+      <th/>
       <th>Name</th>
       <th>active</th>
     </tr>
@@ -29,6 +30,7 @@ function Rooms({rooms}) {
     <tbody>
     {rooms.map((room, index) => {
       return <tr key={index}>
+        <td className="border">{index + 1}.</td>
         <td className="border">{room.name}{room.name.trim().length === 0 ? ' (Blank)' : ''}</td>
         <td className="border">{room.active ? 'Active' : 'Inactive'}</td>
       </tr>;
