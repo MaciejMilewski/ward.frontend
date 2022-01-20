@@ -7,7 +7,7 @@ export default function EventsTable({}) {
   const [locked, setLocked] = useState(false);
 
   useEffect(() => {
-    eventsList()
+    eventsList(10)
       .then(_events => setEvents(_events))
       .catch(error => {
         if (error.response.status === 423) {

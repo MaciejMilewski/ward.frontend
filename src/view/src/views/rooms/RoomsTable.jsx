@@ -6,7 +6,7 @@ export default function RoomsTable({}) {
   const [_rooms, setRooms] = useState(null);
 
   useEffect(() => {
-    roomsList().then(_rooms => setRooms(_rooms.rooms));
+    roomsList(10).then(_rooms => setRooms(_rooms.rooms));
   }, []);
 
   return <div>

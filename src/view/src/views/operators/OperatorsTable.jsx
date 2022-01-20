@@ -6,7 +6,7 @@ export default function OperatorsTable({}) {
   const [_operators, setOperators] = useState(null);
 
   useEffect(() => {
-    operatorsList().then(_operators => setOperators(_operators));
+    operatorsList(10).then(_operators => setOperators(_operators));
   }, []);
 
   return <div>
