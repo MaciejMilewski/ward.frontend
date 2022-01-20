@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {rooms} from "../../../../http.js";
+import {roomsList} from "../../../../http.js";
 import Toolbar from "../Toolbar.jsx";
 
 export default function RoomsTable({}) {
   const [_rooms, setRooms] = useState(null);
 
   useEffect(() => {
-    rooms().then(_rooms => setRooms(_rooms.rooms));
+    roomsList().then(_rooms => setRooms(_rooms.rooms));
   }, []);
 
   return <div>

@@ -1,18 +1,18 @@
 import {
   authenticate,
   icdName,
-  patient,
+  patientGet,
   patientCreate,
   patientDelete,
-  patients,
-  workingHours,
+  patientsList,
+  workingHoursGet,
   workingHoursCreate,
   client,
-  patientUpdate, room, roomCreate, roomDelete, rooms, roomUpdate
+  patientUpdate, roomGet, roomCreate, roomDelete, roomsList, roomUpdate
 } from "../http.js";
 
 byId("load_working_hours").addEventListener("click", () => {
-  workingHours()
+  workingHoursGet()
     .then(workingHours => {
       byId("working_hours").innerText = JSON.stringify(workingHours);
     })
@@ -75,7 +75,7 @@ byId("load_icd").addEventListener("click", () => {
 byId("load_patient_by_pesel").addEventListener("click", () => {
   const pesel = prompt("Podaj pesel:", "00301000015");
 
-  patient(pesel)
+  patientGet(pesel)
     .then(patient => {
       byId("patient_by_pesel").innerText = JSON.stringify(patient);
     });
@@ -108,7 +108,7 @@ byId("load_patients").addEventListener("click", () => {
   const size = prompt("Podaj size:", "2");
   const page = prompt("Podaj stronę:", "1");
 
-  patients(size, page)
+  patientsList(size, page)
     .then(patient => {
       byId("patients").innerText = JSON.stringify(patient);
     })
@@ -133,7 +133,7 @@ byId("update_patient").addEventListener("click", () => {
 byId("load_room").addEventListener("click", () => {
   const name = prompt("Podaj nazwę", "Sala 1");
 
-  room(name)
+  roomGet(name)
     .then(room => {
       byId("room").innerText = JSON.stringify(room);
     })
@@ -168,7 +168,7 @@ byId("load_rooms").addEventListener("click", () => {
   const size = prompt("Podaj size:", "2");
   const page = prompt("Podaj stronę:", "1");
 
-  rooms(size, page)
+  roomsList(size, page)
     .then(rooms => {
       byId("rooms").innerText = JSON.stringify(rooms);
     })

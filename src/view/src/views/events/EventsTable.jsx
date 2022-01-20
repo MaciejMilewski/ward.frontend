@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {events} from "../../../../http.js";
+import {eventsList} from "../../../../http.js";
 import Toolbar from "../Toolbar.jsx";
 
 export default function EventsTable({}) {
@@ -7,7 +7,7 @@ export default function EventsTable({}) {
   const [locked, setLocked] = useState(false);
 
   useEffect(() => {
-    events()
+    eventsList()
       .then(_events => setEvents(_events))
       .catch(error => {
         if (error.response.status === 423) {

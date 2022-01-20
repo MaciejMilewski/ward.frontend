@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {workingHours, workingHoursCreate} from "../../../../http.js";
+import {workingHoursGet, workingHoursCreate} from "../../../../http.js";
 import Text from "../../components/Text.jsx";
 import Button from "../Button.jsx";
 
@@ -7,7 +7,7 @@ export default function Hours({}) {
   const [hours, setHours] = useState(null);
 
   useEffect(() => {
-    workingHours()
+    workingHoursGet()
       .then(_hours => {
         setHours(_hours);
       })

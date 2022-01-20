@@ -7,7 +7,7 @@ export function icdName(icd) {
   return client.get('/icd', {icd}).then(response => response["name"]);
 }
 
-export function workingHours() {
+export function workingHoursGet() {
   return client.get('/working-hours');
 }
 
@@ -15,7 +15,7 @@ export function workingHoursCreate(start, duration) {
   return client.post('/working-hours', {start, duration});
 }
 
-export function patient(pesel) {
+export function patientGet(pesel) {
   return client.get(url('/patients/:pesel', {pesel}));
 }
 
@@ -31,7 +31,7 @@ export function patientUpdate(pesel, newName) {
   return client.put(url('/patients/:pesel', {pesel}), {name: newName});
 }
 
-export function patients(size, page) {
+export function patientsList(size, page) {
   return client.get('/patients', {size, page});
 }
 
@@ -39,7 +39,7 @@ export function authenticate(username, password) {
   return client.post('/auth', {username, password});
 }
 
-export function rooms(size, page) {
+export function roomsList(size, page) {
   return client.get('/rooms', {size, page});
 }
 
@@ -47,7 +47,7 @@ export function roomCreate(name) {
   return client.post('/rooms', {name});
 }
 
-export function room(name) {
+export function roomGet(name) {
   return client.get(url('/rooms/:name', {name}));
 }
 
@@ -59,7 +59,7 @@ export function roomUpdate(name, {name: newName, active}) {
   return client.put(url('/rooms/:name', {name}), {name: newName, active});
 }
 
-export function operators(size, page) {
+export function operatorsList(size, page) {
   return client.get('/operator', {size, page});
 }
 
@@ -71,7 +71,7 @@ export function operatorCreate(name) {
   return client.post('/operator', {name});
 }
 
-export function operator(name) {
+export function operatorGet(name) {
   return client.get(url('/operator/:name', {name}));
 }
 
@@ -83,7 +83,7 @@ export function operatorUpdate(name, {name: newName, active}) {
   return client.put(url('/operator/:name', {name}), {name: newName, active});
 }
 
-export function operationTypes(size, page) {
+export function operationTypesList(size, page) {
   return client.get('/operation-types', {size, page});
 }
 
@@ -91,7 +91,7 @@ export function operationTypeCreate(code, cost, duration, severe) {
   return client.post('/operation-types', {code, cost, duration, severe});
 }
 
-export function operationType(code) {
+export function operationTypeGet(code) {
   return client.get(url('/operation-types/:code', {code}));
 }
 
@@ -103,7 +103,7 @@ export function operationTypeUpdate(code, {cost, duration, severe}) {
   return client.put(url('/operation-types/:code', {code}), {cost, duration, severe});
 }
 
-export function events(size, page) {
+export function eventsList(size, page) {
   return client.get('/events', {size, page});
 }
 
@@ -123,7 +123,7 @@ export function eventCreate(name, required, optional) {
   });
 }
 
-export function event(id) {
+export function eventGet(id) {
   return client.get(url('/events/:id', {id}));
 }
 
@@ -145,18 +145,15 @@ export function eventUpdate(id, optional) {
   });
 }
 
-export function appointments(id, size, page) {
+export function appointmentsList(id, size, page) {
   return client.get(url('/events/:id', {id}), {size, page});
 }
 
-// re_path(r'^events/(\w+)/accepted$', resource(put=event_accept, delete=event_withdraw_acceptation)),
-// re_path(r'^events/(\w+)/status$', resource(put=event_update_status)),
-
-export function budget() {
+export function budgetGet() {
   return client.get('/budget');
 }
 
-export function yearBudget(year) {
+export function yearBudgetGet(year) {
   return client.get(url('/budget/:year', {year}));
 }
 

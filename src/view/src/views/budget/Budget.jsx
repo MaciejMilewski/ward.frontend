@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {budget} from "../../../../http.js";
+import {budgetGet} from "../../../../http.js";
 
 export default function Budget({}) {
   const [_budget, setBudget] = useState(null);
   const [locked, setLocked] = useState(false);
 
   useEffect(() => {
-    budget()
+    budgetGet()
       .then(_budget => setBudget(_budget))
       .catch(error => {
         if (error.response.status === 423) {
