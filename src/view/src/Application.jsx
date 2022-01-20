@@ -47,9 +47,11 @@ export default function ({}) {
             </Route>
 
             <Route path="rooms">
+              <Route path="name">
+                <Route index element={<Room/>}/>
+                <Route path=":room" element={<Room/>}/>
+              </Route>
               <Route index element={<RoomsTable/>}/>
-              <Route path="new" element={<NewRoom/>}/>
-              <Route path=":room" element={<Room/>}/>
             </Route>
 
             <Route path="types">
