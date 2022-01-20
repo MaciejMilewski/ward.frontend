@@ -51,6 +51,7 @@ export default function ({}) {
                 <Route index element={<Room/>}/>
                 <Route path=":room" element={<Room/>}/>
               </Route>
+              <Route path="new" element={<NewRoom/>}/>
               <Route index element={<RoomsTable/>}/>
             </Route>
 

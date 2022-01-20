@@ -1,15 +1,21 @@
 import React, {useState} from "react";
-import Text from "../../components/Text.jsx";
+
+import {roomCreate} from "../../../../http.js";
 import Button from "../Button.jsx";
 import Field from "../Field.jsx";
-import {roomCreate} from "../../../../http.js";
+import Text from "../../components/Text.jsx";
 import Link from "../../components/Link.jsx";
+import {useNavigate} from "react-router-dom";
 
 export default function NewRoom({}) {
+  const navigate = useNavigate();
   const [name, setName] = useState('');
 
   function create() {
     roomCreate(name)
+      .then(() => {
+        navigate("/rooms", {replace: true});
+      })
       .catch(error => {
         if (error.response.status === 442) {
           alert("Invalid name");
