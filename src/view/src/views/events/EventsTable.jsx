@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {eventsList} from "../../../../http.js";
 import Toolbar from "../Toolbar.jsx";
+import Text from "../../components/Text.jsx";
 
 export default function EventsTable({}) {
   const [_events, setEvents] = useState(null);
@@ -8,7 +9,7 @@ export default function EventsTable({}) {
 
   useEffect(() => {
     eventsList(10)
-      .then(_events => setEvents(_events))
+      .then(_events => setEvents(_events.events))
       .catch(error => {
         if (error.response.status === 423) {
           setLocked(true);
@@ -21,13 +22,45 @@ export default function EventsTable({}) {
     <Toolbar href="/events/new"/>
     {locked === true
       ? 'Application locked, set hours'
-      : _events === null ? 'Loading...' : <Json>{_events}</Json>
+      : _events === null ? 'Loading...' : <>
+        <Events events={_events}/>
+      </>
     }
   </div>;
 }
 
-function Json({children}) {
-  return <div className="break-words">
-    {JSON.stringify(children)}
-  </div>
+function Events({events}) {
+  if (events === null) {
+    return 'Loading'
+  }
+  return <table>
+    <thead>
+    <tr>
+      <th><Text>id</Text></th>
+      <th><Text>patient_pesel</Text></th>
+      <th><Text>Patient</Text></th>
+      <th><Text>Code</Text></th>
+      <th><Text>Room</Text></th>
+      <th><Text>operator_name</Text></th>
+      <th><Text>Duration</Text></th>
+      <th><Text>accepted</Text></th>
+      <th><Text>status</Text></th>
+    </tr>
+    </thead>
+    <tbody>
+    {events.map((type, index) => {
+      return <tr key={index}>
+        <td className="border">{type.id}</td>
+        <td className="border">{type.patient_pesel}</td>
+        <td className="border">{type.patient_name}</td>
+        <td className="border">{type.operation_type_name} ({type.operation_type_code})</td>
+        <td className="border">{type.operation_room_name}</td>
+        <td className="border">{type.operator_name}</td>
+        <td className="border">{type.operation_duration + type.cleanup_duration}</td>
+        <td className="border">{type.accepted}</td>
+        <td className="border">{type.status}</td>
+      </tr>;
+    })}
+    </tbody>
+  </table>
 }
