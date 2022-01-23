@@ -2,10 +2,14 @@ import React from "react";
 import Link from "./components/Link.jsx";
 import Text from "./components/Text.jsx";
 import LanguageSwitch from "./components/LanguageSwitch.jsx";
-import useAuthentication from "./auth.js";
+import {useAuthentication} from "./components/Authenticated.jsx";
 
 export default function Layout({children}) {
   const [role, login, logout] = useAuthentication();
+
+  function handleLogin(role) {
+    login(...credentials(role));
+  }
 
   return <div>
     <nav className="h-12 bg-blue-400 mb-3 shadow-md">
@@ -48,10 +52,10 @@ export default function Layout({children}) {
           <li className="mb-2 text-sm">
             {role ? <>Logged as: {role}</> : 'Not logged'}
           </li>
-          <li onClick={() => login('head')}>Head</li>
-          <li onClick={() => login('planner')}>Planner</li>
-          <li onClick={() => login('operator')}>Operator</li>
-          <li onClick={() => login('secretary')}>Secretary</li>
+          <li onClick={() => handleLogin('head')}>Head</li>
+          <li onClick={() => handleLogin('planner')}>Planner</li>
+          <li onClick={() => handleLogin('operator')}>Operator</li>
+          <li onClick={() => handleLogin('secretary')}>Secretary</li>
           <li onClick={() => logout()} className="mt-3 text-gray-500"><Text>Log out</Text></li>
         </ul>
       </aside>
@@ -64,4 +68,14 @@ export default function Layout({children}) {
       </article>
     </div>
   </div>;
+}
+
+function credentials(role) {
+  const credentials = {
+    head: ['user_hd', 'password'],
+    planner: ['user_pl', 'password'],
+    operator: ['user_op', 'password'],
+    secretary: ['user_sc', 'password'],
+  };
+  return credentials[role];
 }
