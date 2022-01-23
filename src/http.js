@@ -1,5 +1,6 @@
 import {url} from "./url.js";
 import {Client} from './client.js';
+import {hourFormat} from "./hours.js";
 
 export const client = new Client('localhost', 8080);
 
@@ -12,7 +13,7 @@ export function workingHoursGet() {
 }
 
 export function workingHoursCreate(start, duration) {
-  return client.post('/working-hours', {start, duration});
+  return client.post('/working-hours', {start: hourFormat(start), duration});
 }
 
 export function patientGet(pesel) {

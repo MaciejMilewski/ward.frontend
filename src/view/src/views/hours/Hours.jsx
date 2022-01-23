@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {workingHoursGet, workingHoursCreate} from "../../../../http.js";
+import {workingHoursCreate, workingHoursGet} from "../../../../http.js";
 import Text from "../../components/Text.jsx";
 import Button from "../Button.jsx";
+import {hourFormat, parsed} from "../../../../hours.js";
 
 export default function Hours({}) {
   const [hours, setHours] = useState(null);
@@ -50,7 +51,6 @@ function HoursSetForm({hours, onSave}) {
 
   return <div>
     <HoursDisplay start={hours.start} duration={hours.duration}/>
-
     <NewHoursSection
       initialStart={hours.start}
       initialDuration={hours.duration}
@@ -72,7 +72,7 @@ function NewHoursSection({initialDuration, initialStart, onSave}) {
         <Text>Work start</Text>
       </p>
       <p>
-        <MinuteField value={start} onChange={setStart}/>, <TimeFormat minutes={start}/>h
+        <MinuteField value={start} onChange={setStart}/>, {hourFormat(start)}h
       </p>
       <p className="mt-3 mb-2">
         <Text>Work duration</Text>
@@ -103,37 +103,15 @@ function MinuteField({value, onChange}) {
 function HoursDisplay({duration, start}) {
   return <div>
     <p>
-      <Text>Work start</Text>: <TimeFormat minutes={start}/>
+      <Text>Work start</Text>: {hourFormat(start)}
     </p>
     <p>
       <Text>Work duration</Text>: <Duration minutes={duration}/>
     </p>
-  </div>
-}
-
-function TimeFormat({minutes}) {
-  const [hours, _minutes] = parsed(minutes);
-  return <>
-    {hours}:{padding(_minutes)}
-  </>
+  </div>;
 }
 
 function Duration({minutes}) {
   const [hours, _minutes] = parsed(minutes);
   return <>{hours} <Text>hours and</Text> {_minutes} <Text>minutes</Text></>;
-}
-
-function padding(value) {
-  const string = "" + value;
-  if (string.length === 1) {
-    return '0' + string;
-  }
-  return string;
-}
-
-function parsed(minutes) {
-  return [
-    parseInt(Math.floor(minutes / 60.0)),
-    minutes % 60
-  ];
 }
