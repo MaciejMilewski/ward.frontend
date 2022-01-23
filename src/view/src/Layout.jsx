@@ -3,9 +3,11 @@ import Link from "./components/Link.jsx";
 import Text from "./components/Text.jsx";
 import LanguageSwitch from "./components/LanguageSwitch.jsx";
 import {useAuthentication} from "./components/Authenticated.jsx";
+import usePermissions from "./permissions.js";
 
 export default function Layout({children}) {
   const [role, login, logout] = useAuthentication();
+  const perm = usePermissions();
 
   function handleLogin(role) {
     login(...credentials(role));
@@ -29,24 +31,27 @@ export default function Layout({children}) {
           <li>
             <Link href="/"><Text>Homepage</Text></Link>
           </li>
-          <li>
+          {perm.hoursRead && <li>
             <Link href="/hours"><Text>Working hours</Text></Link>
-          </li>
-          <li>
+          </li>}
+          {perm.eventsRead && perm.eventsAll && <li>
             <Link href="/events"><Text>Events</Text></Link>
-          </li>
-          <li>
+          </li>}
+          {perm.eventsRead && <li>
+            <Link href="/events/mine"><Text>My events</Text></Link>
+          </li>}
+          {perm.budget && <li>
             <Link href="/budget"><Text>Budget</Text></Link>
-          </li>
-          <li>
+          </li>}
+          {perm.roomsRead && <li>
             <Link href="/rooms"><Text>Operation rooms</Text></Link>
-          </li>
-          <li>
+          </li>}
+          {perm.operatorsRead && <li>
             <Link href="/operators"><Text>Operators</Text></Link>
-          </li>
-          <li>
+          </li>}
+          {perm.typesRead && <li>
             <Link href="/types"><Text>Operation types</Text></Link>
-          </li>
+          </li>}
         </ul>
         <ul className="mt-6">
           <li className="mb-2 text-sm">
