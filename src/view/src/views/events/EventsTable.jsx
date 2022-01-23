@@ -36,15 +36,15 @@ function Events({events}) {
   return <table>
     <thead>
     <tr>
-      <th><Text>id</Text></th>
-      <th><Text>patient_pesel</Text></th>
+      <th/>
+      <th><Text>PESEL</Text></th>
       <th><Text>Patient</Text></th>
       <th><Text>Code</Text></th>
-      <th><Text>Room</Text></th>
-      <th><Text>operator_name</Text></th>
+      <th><Text>Operation room</Text></th>
+      <th><Text>Operator</Text></th>
       <th><Text>Duration</Text></th>
-      <th><Text>accepted</Text></th>
-      <th><Text>status</Text></th>
+      <th><Text>Accepted</Text></th>
+      <th><Text>Status</Text></th>
     </tr>
     </thead>
     <tbody>

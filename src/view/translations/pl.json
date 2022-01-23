@@ -6,6 +6,7 @@
   "Go to": "Idź do",
   "Budget": "Budżet",
   "Operation rooms": "Sale operacyjne",
+  "Operation room": "Sala operacyjna",
   "Operators": "Operatorzy",
   "Operation types": "Typy operacji",
   "Working hours": "Godziny pracy",
@@ -28,5 +29,8 @@
   "Cost": "Koszt",
   "Default duration": "Domyślny czas trwania",
   "Duration": "Czas trwania",
-  "Severe": "Poważna"
+  "Severe": "Poważna",
+  "Accepted": "Zaakceptowana",
+  "Status": "Status",
+  "Active": "Aktywny"
 }
