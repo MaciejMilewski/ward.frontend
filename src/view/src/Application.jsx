@@ -34,6 +34,7 @@ export default function ({}) {
 
               <Route path="events">
                 <Route index element={<EventsTable/>}/>
+                <Route path="mine" element={<EventsTable onlyMine/>}/>
                 <Route path="new" element={<NewEvent/>}/>
                 <Route path=":event" element={<Event/>}/>
               </Route>
