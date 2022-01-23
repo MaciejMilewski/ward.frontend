@@ -5,6 +5,8 @@
   "Homepage": "Strona główna",
   "Go to": "Idź do",
   "Budget": "Budżet",
+  "Year": "Rok",
+  "Amount": "Wielkość",
   "Operation rooms": "Sale operacyjne",
   "Operation room": "Sala operacyjna",
   "Operators": "Operatorzy",
@@ -32,5 +34,6 @@
   "Severe": "Poważna",
   "Accepted": "Zaakceptowana",
   "Status": "Status",
-  "Active": "Aktywny"
+  "Active": "Aktywny",
+  "See": "Zobacz"
 }
