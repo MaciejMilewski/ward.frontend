@@ -52,6 +52,9 @@ export default function Layout({children}) {
           {perm.typesRead && <li>
             <Link href="/types"><Text>Operation types</Text></Link>
           </li>}
+          {perm.patientsRead && <li>
+            <Link href="/patients"><Text>Patients</Text></Link>
+          </li>}
         </ul>
         <ul className="mt-6">
           <li className="mb-2 text-sm">

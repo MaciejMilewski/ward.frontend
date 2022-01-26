@@ -52,5 +52,12 @@
   "September": "Wrzesień",
   "October": "Październik",
   "November": "Listopad",
-  "December": "Grudzień"
+  "December": "Grudzień",
+  "New event": "Nowa operacja",
+  "Patients": "Pacjenci",
+  "Add patient": "Dodaj pacjenta",
+  "No patients": "Brak pacjentów",
+  "Cancel": "Anuluj",
+  "Edit patient": "Edytuj pacjenta",
+  "Loading": "Wczytywanie"
 }

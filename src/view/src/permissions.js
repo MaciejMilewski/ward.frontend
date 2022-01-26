@@ -4,6 +4,7 @@ export default function usePermission() {
   const [role] = useAuthentication();
 
   const planner = role === 'planner';
+  const operator = role === 'operator';
   const secretary = role === 'secretary';
 
   if (role === 'head') {
@@ -20,6 +21,8 @@ export default function usePermission() {
       operatorsRead: true,
       typesEdit: true,
       typesRead: true,
+      patientsRead: true,
+      patientsEdit: true,
     }
   }
 
@@ -36,5 +39,7 @@ export default function usePermission() {
     operatorsRead: planner,
     typesEdit: false,
     typesRead: planner,
+    patientsRead: planner || operator,
+    patientsEdit: planner,
   };
 }
